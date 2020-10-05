@@ -52,9 +52,9 @@ services:
       - PASV_ADDRESS=127.0.0.1
       - PASV_MIN_PORT=21100
       - PASV_MAX_PORT=21110
-      - ENV ANON_ENABLE=NO
-      - ENV NO_ANON_PASSWD=NO
-      - ENV ANON_ROOT=/var/ftp
+      - ANON_ENABLE=NO
+      - NO_ANON_PASSWD=NO
+      - ANON_ROOT=/var/ftp
     volumes:
       - ./data:/home/username
     ports:

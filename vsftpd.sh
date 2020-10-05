@@ -24,6 +24,10 @@ pasv_enable=$PASV_ENABLE
 pasv_max_port=$PASV_MAX_PORT
 pasv_min_port=$PASV_MIN_PORT
 pasv_address=$PASV_ADDRESS
+
+anonymous_enable=$ANON_ENABLE
+no_anon_password=$NO_ANON_PASSWD
+anon_root=$ANON_ROOT
 " >> /etc/vsftpd/vsftpd.conf
 
 /usr/sbin/vsftpd /etc/vsftpd/vsftpd.conf

@@ -47,8 +47,9 @@ echo "delay_upload $WEBDAV_DELAY_UPLOAD" >/etc/davfs2/davfs2.conf
 
 # create webdav mount for nextcloud
 echo "Mounting $WEBDAV_URL into /home/$FTP_USER/$WEBDAV_DIR_NAME"
-# sudo mount -t davfs -o noexec $WEBDAV_URL /home/$FTP_USER/$WEBDAV_DIR_NAME
-echo "$WEBDAV_URL /home/$FTP_USER/$WEBDAV_DIR_NAME davfs user,file_mode=600,dir_mode=700 0 1" >/etc/fstab
+mount -t davfs -o noexec $WEBDAV_URL /home/$FTP_USER/$WEBDAV_DIR_NAME
+# Alternative, needs testing
+# echo "$WEBDAV_URL /home/$FTP_USER/$WEBDAV_DIR_NAME davfs user,file_mode=600,dir_mode=700 0 1" >/etc/fstab
 
 # start vsftpd
 echo "Starting FTP server"

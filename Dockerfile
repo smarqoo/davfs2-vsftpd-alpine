@@ -1,7 +1,6 @@
 FROM alpine:latest
 
-MAINTAINER github.com/shourai
-LABEL Description="vsftpd Docker image based on Alpine Linux. Supports passive mode."
+LABEL Description="FTP-WebDAV bridge Docker container based on davfs2, vsftpd and alpine"
 
 RUN apk --no-cache add vsftpd
 

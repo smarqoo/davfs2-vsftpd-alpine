@@ -1,5 +1,11 @@
 #!/bin/sh
 
+# cleanup when SIGINT signal is trapped below. Avoids zombie davfs processes when container is killed
+function do_for_sigint() {
+  echo "Unmounting /home/$FTP_USER/$WEBDAV_DIR_NAME"
+  umount /home/$FTP_USER/$WEBDAV_DIR_NAME
+}
+
 # Create user and add it to the 'ftp' group
 adduser -G ftp -s /bin/sh -D $FTP_USER
 
@@ -46,6 +52,9 @@ echo "delay_upload $WEBDAV_DELAY_UPLOAD" >/etc/davfs2/davfs2.conf
 # create webdav mount for nextcloud
 echo "Mounting $WEBDAV_URL into /home/$FTP_USER/$WEBDAV_DIR_NAME"
 mount -t davfs -o noexec $WEBDAV_URL /home/$FTP_USER/$WEBDAV_DIR_NAME
+
+# unmount WebDAV to avoid problems on container restart
+trap 'do_for_sigint' 2
 
 # after mounting, pass the folder to our ftp user
 chown $FTP_USER /home/$FTP_USER/$WEBDAV_DIR_NAME

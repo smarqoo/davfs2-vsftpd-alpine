@@ -33,8 +33,6 @@ anon_root=$ANON_ROOT
 # create directory for webdav mount and give user access to it
 echo "Creating directory for WebDAV mount '/home/$FTP_USER/$WEBDAV_DIR_NAME'"
 mkdir /home/$FTP_USER/$WEBDAV_DIR_NAME
-chown $FTP_USER /home/$FTP_USER/$WEBDAV_DIR_NAME
-chmod 770 /home/$FTP_USER/$WEBDAV_DIR_NAME
 
 # configure davfs2 WebDAV mount secret
 echo "/home/$FTP_USER/$WEBDAV_DIR_NAME $WEBDAV_USER $WEBDAV_PASS" >/etc/davfs2/secrets
@@ -48,8 +46,10 @@ echo "delay_upload $WEBDAV_DELAY_UPLOAD" >/etc/davfs2/davfs2.conf
 # create webdav mount for nextcloud
 echo "Mounting $WEBDAV_URL into /home/$FTP_USER/$WEBDAV_DIR_NAME"
 mount -t davfs -o noexec $WEBDAV_URL /home/$FTP_USER/$WEBDAV_DIR_NAME
-# Alternative, needs testing
-# echo "$WEBDAV_URL /home/$FTP_USER/$WEBDAV_DIR_NAME davfs user,file_mode=600,dir_mode=700 0 1" >/etc/fstab
+
+# after mounting, pass the folder to our ftp user
+chown $FTP_USER /home/$FTP_USER/$WEBDAV_DIR_NAME
+chmod 770 /home/$FTP_USER/$WEBDAV_DIR_NAME
 
 # start vsftpd
 echo "Starting FTP server"

@@ -4,7 +4,7 @@ FTP-to-WebDAV bridge Docker container based on `davfs2`, `vsftpd` and `alpine`.
 
 This container provides FTP access to a folder, which is synchronized with a remote WebDAV share. In other words, any files uploaded via FTP will be automatically uploaded to the WebDAV share. Similarly, any changes on the WebDAV folder side are reflected on the FTP server.
 
-This container extends the [Shourai/vsftpd-alpine](https://github.com/Shourai/vsftpd-alpine) vsftpd container's functionality by adding the WebDAV part.
+This container extends the [Shourai/vsftpd-alpine](https://github.com/Shourai/vsftpd-alpine) container's functionality by adding the WebDAV part.
 
 ## Important note
 

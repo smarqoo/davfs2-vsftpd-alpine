@@ -56,7 +56,7 @@ docker run -d \
 -e PASV_ADDRESS=<server ip> -e PASV_MIN_PORT=21100 -e PASV_MAX_PORT=21110 \
 -p 20:20 -p 21:21 -p 21100-21110:21100-21110 \
 -e "WEBDAV_URL=<web-dav URL>" \
--e "WEBDAV_USER=<webdav usernam>" -e "WEBDAV_PASS=<webdav password>"
+-e "WEBDAV_USER=<webdav username>" -e "WEBDAV_PASS=<webdav password>"
 --privileged --cap-add=SYS_ADMIN --device /dev/fuse \
 --name ftp-webdav-bridge davfs2-vsftpd-alpine
 ```

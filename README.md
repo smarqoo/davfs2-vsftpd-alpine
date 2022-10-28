@@ -41,6 +41,11 @@ Additional FTP-related variables passed to [vsftpd](http://vsftpd.beasts.org/vsf
 
 Additional WebDAV-related configuration properties:
 * `WEBDAV_DIR_NAME`: name for the sub-folder, which will be used for the WebDAV synchronization. This folder will be within the `home` of the `FTP_USER` (default value is `webdav`)
+* `WEBDAV_DELAY_UPLOAD`: corresponds to [davfs2's](https://www.systutorials.com/docs/linux/man/5-davfs2.conf/) `delay_upload` configuration property.
+
+   _When a file that has been changed is closed, mount.davfs will wait that many seconds before it will upload it to the server. This will avoid uploading of temporary files that will be removed immediately after closing. If you need the files to appear on the server immediately after closing, set this option to 0._.
+   
+   This container's default value is `0`, leading to immediate uploads.
 
 ## Running
 
